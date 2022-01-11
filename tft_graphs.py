@@ -1,17 +1,12 @@
 import matplotlib.pyplot as plt
 from database import DatabaseExecutes
 from config import NICKNAMES
-import numpy as np
 import os
 
 
 def make_graph(database_executor, nickname, filename):
     dates = database_executor.select_from_database('date', nickname)
     ranks = database_executor.select_from_database('rank', nickname)
-
-    # SELECT date FROM tabela;
-    # plotting the points
-
     segregated_ranks = ['PLATINUM IV', 'PLATINUM III', 'PLATINUM II', 'PLATINUM I', 'DIAMOND IV',
                         'DIAMOND III', 'DIAMOND II', 'DIAMOND I', 'MASTER I']
     # seen_ranks = []
@@ -27,28 +22,17 @@ def make_graph(database_executor, nickname, filename):
     plot_sorted_ranks = [index_by_seen_ranks[r] for r in ranks]
     plt.plot(dates, plot_sorted_ranks)
     plt.yticks(range(len(seen_ranks)), seen_ranks)
-
-    print(f'{seen_ranks=}')
-    print(f'{index_by_seen_ranks=}')
-    print(f'{ranks=}')
-    print(f'{plot_sorted_ranks=}')
-
 # naming the x axis
     plt.xlabel('DATE')
-    # naming the y axis
+# naming the y axis
     plt.ylabel('RANK')
-
-    # giving a title to my graph
+# giving a title to my graph
     plt.title(nickname)
-
-    # function to show the plot
+# function to show the plot
     # plt.show()
-    # ax = plt.gca()
-    # ax.set_ylim(ax.get_ylim()[::-1])
-    # function to save as file
+# function to save as file
     path = os.path.join("graphs", f"{filename}.png")
     plt.savefig(path, bbox_inches='tight')
-
     plt.clf()
 
 

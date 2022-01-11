@@ -3,7 +3,7 @@ import os
 import tft_graphs
 from api_tft_data_downloader import ApiTFTDataDownloader
 
-from config import API_KEY, NICKNAMES, DISCORD_KEY
+from config import NICKNAMES, DISCORD_KEY
 
 
 class Discord(discord.Client):
@@ -14,6 +14,7 @@ class Discord(discord.Client):
         print(self.user.id)
         print('------')
 
+    # For every person
     # async def on_message(self, message):
     #     # we do not want the bot to reply to itself
     #     if message.author.id == self.user.id:
@@ -33,6 +34,7 @@ class Discord(discord.Client):
     #         await message.channel.send(message_discord)
     #         self.remove_files()
 
+    # For one person
     async def on_message(self, message):
         # we do not want the bot to reply to itself
         nickname = message.content
@@ -49,7 +51,7 @@ class Discord(discord.Client):
             message_discord += info_for_discord
             # graph
             tft_graphs.portable_execute_func()
-            filename = os.path.join("graphs", f"{nickname}.png" )
+            filename = os.path.join("graphs", f"{nickname}.png")
             with open(filename, 'rb') as file:
                 picture = discord.File(file)
                 await message.channel.send(file=picture)
@@ -59,13 +61,14 @@ class Discord(discord.Client):
     @staticmethod
     def remove_files():
         for nickname in NICKNAMES:
-            filename = os.path.join("graphs", f"{nickname}.png" )
+            filename = os.path.join("graphs", f"{nickname}.png")
             os.remove(filename)
 
 
 def main():
     client = Discord()
     client.run(DISCORD_KEY)
+    # print every person
     # for nickname in NICKNAMES:
     #     info = ApiTFTDataDownloader(nickname)
     #     info.info_execute_functions()

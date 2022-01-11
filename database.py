@@ -45,13 +45,6 @@ class DatabaseExecutes:
         try:
             cursor.execute(query)
             result = cursor.fetchall()
-            #result = [el[0] for el in result]
-            # to samo co:
-            # new_result = []
-            # for el in result:
-            #     new_result.append(el)
-            # result = new_result
-
             return result
         except Error as e:
             print(f"The error '{e}' occurred")
@@ -84,7 +77,7 @@ class DatabaseExecutes:
 
 def main():
     database_executor = DatabaseExecutes(os.path.join("tft_database.sqlite"))
-    #database_executor.execute_insert_date_rank()
+    # database_executor.execute_insert_date_rank()
 
 
 if __name__ == '__main__':
