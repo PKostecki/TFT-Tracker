@@ -21,6 +21,7 @@ def make_graph(database_executor, nickname, filename):
     # index_by_seen_ranks = {}
     # for i, r in enumerate(seen_ranks):
     #       index_by_seen_ranks[r] = i
+    plt.xticks(rotation=45)
     index_by_seen_ranks = {r: i for i, r in enumerate(seen_ranks)}
     plot_sorted_ranks = [index_by_seen_ranks[r] for r in ranks]
     plt.plot(dates, plot_sorted_ranks)

@@ -49,7 +49,7 @@ class Discord(discord.Client):
             message_discord += info_for_discord
             # graph
             tft_graphs.portable_execute_func()
-            with open("..\\tft\\graphs\\" + nickname + '.png', 'rb') as file:
+            with open(".\\graphs\\" + nickname + '.png', 'rb') as file:
                 picture = discord.File(file)
                 await message.channel.send(file=picture)
             await message.channel.send(message_discord)
