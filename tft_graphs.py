@@ -46,7 +46,8 @@ def make_graph(database_executor, nickname, filename):
     # ax = plt.gca()
     # ax.set_ylim(ax.get_ylim()[::-1])
     # function to save as file
-    plt.savefig(f'graphs\\{filename}.png', bbox_inches='tight')
+    path = os.path.join("graphs", f"{filename}.png")
+    plt.savefig(path, bbox_inches='tight')
 
     plt.clf()
 
