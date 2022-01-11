@@ -3,6 +3,7 @@ from sqlite3 import Error
 from config import NICKNAMES
 from api_tft_data_downloader import ApiTFTDataDownloader
 from datetime import date
+import os
 
 
 class DatabaseExecutes:
@@ -82,7 +83,7 @@ class DatabaseExecutes:
 
 
 def main():
-    database_executor = DatabaseExecutes(".\\tft_database.sqlite")
+    database_executor = DatabaseExecutes(os.path.join("tft_database.sqlite"))
     #database_executor.execute_insert_date_rank()
 
 

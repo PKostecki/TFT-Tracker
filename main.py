@@ -49,7 +49,8 @@ class Discord(discord.Client):
             message_discord += info_for_discord
             # graph
             tft_graphs.portable_execute_func()
-            with open(".\\graphs\\" + nickname + '.png', 'rb') as file:
+            filename = os.path.join("graphs", f"{nickname}.png" )
+            with open(filename, 'rb') as file:
                 picture = discord.File(file)
                 await message.channel.send(file=picture)
             await message.channel.send(message_discord)
@@ -58,7 +59,8 @@ class Discord(discord.Client):
     @staticmethod
     def remove_files():
         for nickname in NICKNAMES:
-            os.remove(".\\graphs\\" + nickname + '.png')
+            filename = os.path.join("graphs", f"{nickname}.png" )
+            os.remove(filename)
 
 
 def main():

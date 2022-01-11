@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from database import DatabaseExecutes
 from config import NICKNAMES
 import numpy as np
+import os
 
 
 def make_graph(database_executor, nickname, filename):
@@ -51,13 +52,13 @@ def make_graph(database_executor, nickname, filename):
 
 
 def portable_execute_func():
-    database_executor = DatabaseExecutes(".\\tft_database.sqlite")
+    database_executor = DatabaseExecutes(os.path.join("tft_database.sqlite"))
     for nickname in NICKNAMES:
         make_graph(database_executor, nickname, nickname)
 
 
 def main():
-    database_executor = DatabaseExecutes(".\\tft_database.sqlite")
+    database_executor = DatabaseExecutes(os.path.join("tft_database.sqlite"))
     for nickname in NICKNAMES:
         make_graph(database_executor, nickname, nickname)
 
